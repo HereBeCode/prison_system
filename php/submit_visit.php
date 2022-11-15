@@ -7,7 +7,7 @@
 
     $conf_number = $_POST['confirmationNumber'];
     $query = "UPDATE visits SET visited = 1 WHERE visit_id = $conf_number";
-    $result = $conn->query($sql);
+    $result = $conn->query($query);
    
     $message = "";
     if (!$result) echo "Error in updating visit: $conf_number ";
