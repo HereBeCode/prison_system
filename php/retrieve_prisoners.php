@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <?php include './php/database.php'; ?>
+    <?php include 'database.php'; ?>
     <?php 
         $sql = 'SELECT * FROM prisoner';
         $result = $conn->query($sql);
