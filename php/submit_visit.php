@@ -7,6 +7,8 @@
 
     $conf_number = $_POST['confirmationNumber'];
 
+    
+
     // Add logic for checking if visit date == current date ---> if not current date decline visit 
     // Add logic for checking if patient has already been visited ---> if visited == 1, refuse visit.
     // Any other stuff to check?
