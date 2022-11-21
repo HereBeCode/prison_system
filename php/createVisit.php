@@ -54,7 +54,7 @@ if ($futureVisitResult->num_rows != 0) {
 
 } else {
     echo "future visit is nonexistent";
-
+    //guess dont actually need these else's just in here for testing
 }
 
 
@@ -102,7 +102,7 @@ if ($datePastVisit && $dateFutureVisit) {
     }
 
 } else {
-    echo "else triggered";
+    echo "Unexpected Error Triggered";
 
 }
 
