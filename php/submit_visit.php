@@ -14,6 +14,7 @@
     // Any other stuff to check?
     // Likely requires a SELECT query to grab the row with the visit_id == confirmationNumber, check for the logic above and reject the visit (i.e. do not execute the next two lines of code)
 
+    if(!$conf_number==1) echo "Error";
     $query = "UPDATE visits SET visited = 1 WHERE visit_id = $conf_number";
     $result = $conn->query($query);
    
