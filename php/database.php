@@ -2,7 +2,7 @@
     $servername = "localhost";
     $username = "root";
     $password = "";
-    $database = "PrisonSystem";
+    $database = "prison_system";
 
     $conn = new mysqli($servername, $username, $password, $database);
     

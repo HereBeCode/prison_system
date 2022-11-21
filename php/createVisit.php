@@ -68,12 +68,17 @@ echo "req date = " . $requestedDate->format('Y-m-d') . "<br>";
 //4 cases, past visit and future visit exist, 1 of each only, none
 //if date_create fails it returns "false" according to docs
 if ($datePastVisit && $dateFutureVisit) {
-    $pastDateDiff = date_diff($datePastVisit, $requestedDate);
-    $futureDateDiff = date_diff($requestedDate, $dateFutureVisit);
-    if($pastDateDiff >= $securityDateRangeDays && $futureDateDiff >= $securityDateRangeDays){
-        //INSERT QUERY HERE
+    $pastDateDiff = date_diff($datePastVisit, $requestedDate, $absolute = true);
+    $futureDateDiff = date_diff($requestedDate, $dateFutureVisit, $absolute = true);
+    if(($pastDateDiff->days >= $securityDateRangeDays) && ($futureDateDiff->days >= $securityDateRangeDays)){
+       $insertQuery =  "INSERT INTO visits
+        VALUES
+        ($requestedDate, 0, $prisonerID, $visitorID)";
+        $insertResult = $conn->query($insertQuery);
     }
     else{
+        echo ($pastDateDiff->days)."<br>";
+        echo ($securityDateRangeDays)."<br>";
         echo "Error creating visit invalid date";
     }
     //how deep do we want to go in error messages here?
@@ -83,10 +88,14 @@ if ($datePastVisit && $dateFutureVisit) {
 } elseif ($datePastVisit && !$dateFutureVisit) {
     $pastDateDiff = date_diff($datePastVisit, $requestedDate);
     echo "Future visit null case satisfied";
-    if($pastDateDiff->d >= $securityDateRangeDays){
-        //INSERT QUERY HERE
+    if($pastDateDiff->days >= $securityDateRangeDays){
+        $insertQuery =  "INSERT INTO visits
+        VALUES
+        ($requestedDate, 0, $prisonerID, $visitorID)";
+        $insertResult = $conn->query($insertQuery);
     }
     else{
+        echo ($pastDateDiff->days)."<br>";
         echo "Error inserting visit, prisoner has had visit $pastDateDiff->d days prior.";
     }
 
@@ -94,11 +103,14 @@ if ($datePastVisit && $dateFutureVisit) {
 } elseif (!$datePastVisit && $dateFutureVisit) {
     $futureDateDiff = date_diff($requestedDate, $dateFutureVisit);
     echo "Past visit null case satisfied";
-    if($futureDateDiff->d >= $securityDateRangeDays){
-
+    if($futureDateDiff->days >= $securityDateRangeDays){
+        $insertQuery =  "INSERT INTO visits
+        VALUES
+        ($requestedDate, 0, $prisonerID, $visitorID)";
+        $insertResult = $conn->query($insertQuery);
     }
     else {
-        echo "Error inserting visit, prisoner has had visit $futureDateDiff->d days prior.";
+        echo "Error inserting visit, prisoner has visit scheduled $futureDateDiff->d days in future.";
     }
 
 } else {
