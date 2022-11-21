@@ -4,22 +4,13 @@
 function visitDayLimit($securityLevel)
 {
     //assuming 30 day month
-    if ($securityLevel == 'low') {
-        return 7;
-
-    } elseif ($securityLevel == 'medium') {
-        return 30;
-
-    } else {
-        return 180;
-
-    }
-
+    if ($securityLevel == 'low') return 7;
+    elseif ($securityLevel == 'medium') return 30;
+    else return 180;
 }
 
 $datePastVisit = NULL;
 $dateFutureVisit = NULL;
-
 
 $prisonerID = $_POST['prisoner_id'];
 $visitorID = $_POST['visitor_id'];
@@ -34,13 +25,8 @@ if ($pastVisitResult->num_rows != 0) {
     $pastVisitResult = implode(" ", $pastVisitResult->fetch_assoc());
     echo $pastVisitResult . "<br>";
     $datePastVisit = date_create($pastVisitResult);
-} else {
-    echo "past visit is non existent <br>" ;
-
-}
-
-
-
+} 
+else echo "past visit is non existent <br>" ;
 
 
 //echo $pastVisitResult . "<br>";
@@ -55,12 +41,8 @@ if ($futureVisitResult->num_rows != 0) {
     $futureVisitResult = implode(" ", $futureVisitResult->fetch_assoc());
     echo $futureVisitResult . "<br>";
     $dateFutureVisit = date_create($futureVisitResult);
-
-
-} else {
-    echo "future visit is nonexistent";
-
-}
+} 
+else echo "future visit is nonexistent";
 
 
 echo gettype($futureVisitResult) . "<br> <br>";
@@ -75,17 +57,15 @@ echo "req date = " . $requestedDate->format('Y-m-d') . "<br>";
 if ($datePastVisit && $dateFutureVisit) {
     $pastDateDiff = date_diff($datePastVisit, $requestedDate);
     $futureDateDiff = date_diff($requestedDate, $dateFutureVisit);
-
-
-
-} elseif ($datePastVisit && !$dateFutureVisit) {
+} 
+elseif ($datePastVisit && !$dateFutureVisit) {
     echo "Future visit null case satisfied";
-} elseif (!$datePastVisit && $dateFutureVisit) {
+} 
+elseif (!$datePastVisit && $dateFutureVisit) {
     echo "Past visit null case satisfied";
-
-} else {
+} 
+else {
     echo "else triggered";
-
 }
 
 
