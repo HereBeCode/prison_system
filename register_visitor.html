@@ -6,7 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-  <body>
-    Register visitor page.
+  <body align="center">
+    Register Visitor Form <br></br>
+
+    <form action="./php/register_visitor.php" method="post">
+      <table align="center">
+        <tr>          
+          <td><input style="text-align: center" type="text" name="firstName" value="First Name" align="center"></td>
+        </tr>
+        <tr>          
+          <td ><input style="text-align: center" type="text" name="lastName" value="Last Name"></td>
+        </tr>
+        <tr>
+          <td><input style="text-align: center" type="text" name="age" value="Age"></td>
+        </tr>
+        
+      </table>
+
+      <input type="submit" value="Submit"/>
+      <input type="reset" value="Reset"/>
+    </form>
   </body>
 </html>
