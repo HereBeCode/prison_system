@@ -83,22 +83,22 @@ if ($datePastVisit && $dateFutureVisit) {
 } elseif ($datePastVisit && !$dateFutureVisit) {
     $pastDateDiff = date_diff($datePastVisit, $requestedDate);
     echo "Future visit null case satisfied";
-    if($pastDateDiff >= $securityDateRangeDays){
+    if($pastDateDiff->d >= $securityDateRangeDays){
         //INSERT QUERY HERE
     }
     else{
-        echo "Error inserting visit, prisoner has had visit $pastDateDiff days prior.";
+        echo "Error inserting visit, prisoner has had visit $pastDateDiff->d days prior.";
     }
 
 
 } elseif (!$datePastVisit && $dateFutureVisit) {
     $futureDateDiff = date_diff($requestedDate, $dateFutureVisit);
     echo "Past visit null case satisfied";
-    if($futureDateDiff >= $securityDateRangeDays){
+    if($futureDateDiff->d >= $securityDateRangeDays){
 
     }
     else {
-        echo "Error inserting visit, prisoner has had visit $futureDateDiff days prior.";
+        echo "Error inserting visit, prisoner has had visit $futureDateDiff->d days prior.";
     }
 
 } else {
