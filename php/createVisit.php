@@ -46,9 +46,12 @@ if ($pastVisitResult->num_rows != 0) {
 //echo $pastVisitResult . "<br>";
 
 $lookupSecurity = "SELECT security_level FROM prisoner WHERE prisoner_id = $prisonerID ";
+$securityLevel = $conn->query($lookupSecurity);
+$securityDateRangeDays = visitDayLimit($securityLevel);
+echo " ".$securityDateRangeDays." secdateranedays";
+
 
 $lookupFutureVisit = "SELECT visit_date FROM visits WHERE prisoner_id = $prisonerID AND visit_date >= '$requestedDate' ORDER BY visit_date LIMIT 1";
-
 $futureVisitResult = $conn->query($lookupFutureVisit);
 
 if ($futureVisitResult->num_rows != 0) {
@@ -81,6 +84,7 @@ if ($datePastVisit && $dateFutureVisit) {
     $futureDateDiff = date_diff($requestedDate, $dateFutureVisit);
     if ($pastDateDiff >= $securityDateRangeDays && $futureDateDiff >= $securityDateRangeDays) {
         $insertResult = $conn->query($insertQuery);
+       // echo $insertResult->fetch_assoc();
     } else {
         echo "Error creating visit invalid date";
     }
@@ -90,6 +94,8 @@ if ($datePastVisit && $dateFutureVisit) {
 
 } elseif ($datePastVisit && !$dateFutureVisit) {
     echo "Future visit null case satisfied";
+    $pastDateDiff = date_diff($datePastVisit, $requestedDate);
+
     if ($pastDateDiff->days >= $securityDateRangeDays) {
         $insertResult = $conn->query($insertQuery);
 
