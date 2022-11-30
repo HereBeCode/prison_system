@@ -80,11 +80,15 @@ $insertQuery = "INSERT INTO visits (visit_date, visited, visitor_id, prisoner_id
 //4 cases, past visit and future visit exist, 1 of each only, none
 //if date_create fails it returns "false" according to docs
 if ($datePastVisit && $dateFutureVisit) {
+    echo "pastvisit date = " . $datePastVisit->format('Y-m-d') . "<br>";
+    echo "future date = " . $dateFutureVisit->format('Y-m-d') . "<br>";
+
+
     $pastDateDiff = date_diff($datePastVisit, $requestedDate);
     $futureDateDiff = date_diff($requestedDate, $dateFutureVisit);
     if ($pastDateDiff->days >= $securityDateRangeDays && $futureDateDiff->days >= $securityDateRangeDays) {
         $insertResult = $conn->query($insertQuery);
-       // echo $insertResult->fetch_assoc();
+
     } else {
         echo "Error creating visit invalid date";
     }
@@ -115,7 +119,7 @@ if ($datePastVisit && $dateFutureVisit) {
     }
 
 } else {
-    echo "else triggered";
+    echo "else triggered - unexpected error";
 
 }
 
