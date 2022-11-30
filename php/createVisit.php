@@ -75,14 +75,14 @@ echo "req date = " . $requestedDate->format('Y-m-d') . "<br>";
 
 $requestedDateString = $requestedDate->format('Y-m-d');
 echo "fucking strng $requestedDateString";
-$insertQuery = "INSERT INTO `visits` (`visit_date`, `visited`, `visitor_id`, `prisoner_id`) VALUES ($requestedDateString , 0, $visitorID, $prisonerID)";
+$insertQuery = "INSERT INTO visits (visit_date, visited, visitor_id, prisoner_id) VALUES ($requestedDateString , 0, $visitorID, $prisonerID)";
 
 //4 cases, past visit and future visit exist, 1 of each only, none
 //if date_create fails it returns "false" according to docs
 if ($datePastVisit && $dateFutureVisit) {
     $pastDateDiff = date_diff($datePastVisit, $requestedDate);
     $futureDateDiff = date_diff($requestedDate, $dateFutureVisit);
-    if ($pastDateDiff >= $securityDateRangeDays && $futureDateDiff >= $securityDateRangeDays) {
+    if ($pastDateDiff->days >= $securityDateRangeDays && $futureDateDiff->days >= $securityDateRangeDays) {
         $insertResult = $conn->query($insertQuery);
        // echo $insertResult->fetch_assoc();
     } else {
@@ -97,6 +97,7 @@ if ($datePastVisit && $dateFutureVisit) {
     $pastDateDiff = date_diff($datePastVisit, $requestedDate);
 
     if ($pastDateDiff->days >= $securityDateRangeDays) {
+        echo "<br> hit if block in future null";
         $insertResult = $conn->query($insertQuery);
 
     } else {
