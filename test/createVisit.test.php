@@ -18,13 +18,131 @@ function visitDayLimit($securityLevel)
 }
 
 
+
 $datePastVisit = NULL;
 $dateFutureVisit = NULL;
 
+// High Security Prisoner - 26
+// Just past fail 
+$prisonerID = 26;
+$visitorID = 5;
+$requestedDate = "2022-11-18";
 
-$prisonerID = $_POST['prisoner_id'];
-$visitorID = $_POST['visitor_id'];
-$requestedDate = $_POST['visit_date'];
+// Just pass pass
+$prisonerID = 26;
+$visitorID = 5;
+$requestedDate = "2024-10-31";
+
+// BFP left fail
+$prisonerID = 26;
+$visitorID = 5;
+$requestedDate = "2022-11-30";
+
+// BFP right fail
+$prisonerID = 26;
+$visitorID = 5;
+$requestedDate = "2024-10-30";
+
+// BFP pass
+$prisonerID = 26;
+$visitorID = 5;
+$requestedDate = "2023-07-31";
+
+// High Security Prisoner - 27
+// Just future fail
+$prisonerID = 27;
+$visitorID = 5;
+$requestedDate = "2024-12-25";
+
+// Just future pass
+$prisonerID = 27;
+$visitorID = 5;
+$requestedDate = "2023-06-01";
+
+
+
+
+// Medium Security Prisoner - 28
+// Just past fail 
+$prisonerID = 28;
+$visitorID = 5;
+$requestedDate = "2022-11-18";
+
+// Just pass pass
+$prisonerID = 28;
+$visitorID = 5;
+$requestedDate = "2024-10-31";
+
+// BFP left fail
+$prisonerID = 28;
+$visitorID = 5;
+$requestedDate = "2022-11-18";
+
+// BFP right fail
+$prisonerID = 28;
+$visitorID = 5;
+$requestedDate = "2024-10-30";
+
+// BFP pass
+$prisonerID = 28;
+$visitorID = 5;
+$requestedDate = "2023-07-31";
+
+// Medium Security Prisoner - 29
+// Just future fail
+$prisonerID = 29;
+$visitorID = 5;
+$requestedDate = "2024-12-25";
+
+// Just future pass
+$prisonerID = 29;
+$visitorID = 5;
+$requestedDate = "2023-06-01";
+
+
+
+
+
+
+// Low Security Prisoner - 36
+// Just past fail 
+$prisonerID = 36;
+$visitorID = 5;
+$requestedDate = "2022-11-18";
+
+// Just past pass
+$prisonerID = 36;
+$visitorID = 5;
+$requestedDate = "2023-03-15";
+
+// BFP left fail
+$prisonerID = 36;
+$visitorID = 5;
+$requestedDate = "2022-11-18";
+
+// BFP right fail
+$prisonerID = 36;
+$visitorID = 5;
+$requestedDate = "2023-03-14";
+
+// BFP pass
+$prisonerID = 36;
+$visitorID = 5;
+$requestedDate = "2022-12-15";
+
+// Low Security Prisoner - 37
+// Just future fail
+$prisonerID = 37;
+$visitorID = 5;
+$requestedDate = "2024-12-31";
+
+// Just future pass
+$prisonerID = 37;
+$visitorID = 5;
+$requestedDate = "2023-06-01";
+
+
+function testfunction($conn, $prisonerID, $visitorID, $requestedDate) {
 
 $lookupPastVisit = "SELECT visit_date FROM visits WHERE prisoner_id = $prisonerID AND visited = 1 ORDER BY visit_date DESC LIMIT 1";
 
@@ -39,8 +157,6 @@ if ($pastVisitResult->num_rows != 0) {
     echo "past visit is non existent <br>" ;
 
 }
-
-
 
 
 
@@ -112,6 +228,7 @@ if ($datePastVisit && $dateFutureVisit) {
 
 } elseif (!$datePastVisit && $dateFutureVisit) {
     echo "Past visit null case satisfied";
+    $futureDateDiff = date_diff($requestedDate, $dateFutureVisit);
     if ($futureDateDiff->days >= $securityDateRangeDays) {
         $insertResult = $conn->query($insertQuery);
 
@@ -123,7 +240,7 @@ if ($datePastVisit && $dateFutureVisit) {
     echo "else triggered - unexpected error";
 
 }
-
+}
 
 
 //echo $pastDateDiff->days;

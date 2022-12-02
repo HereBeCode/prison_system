@@ -4,27 +4,26 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Document</title> 
+    <script src="./js/validate_visitor.js"></script>
   </head>
   <body align="center">
     Register Visitor Form <br></br>
 
-    <form action="./php/register_visitor.php" method="post">
+    
+    <form name="registerForm" action="./php/register_visitor.php" method="post">
       <table align="center">
         <tr>          
-          <td><input style="text-align: center" type="text" name="firstName" value="First Name" align="center"></td>
+          <td><input style="text-align: center" type="text" name="firstName" value="First Name" ></td>
         </tr>
         <tr>          
           <td ><input style="text-align: center" type="text" name="lastName" value="Last Name"></td>
         </tr>
-        <tr>
-          <td><input style="text-align: center" type="text" name="age" value="Age"></td>
-        </tr>
-        
       </table>
 
-      <input type="submit" value="Submit"/>
+      <input type="submit" value="Submit" onclick="return validateForm()" />
       <input type="reset" value="Reset"/>
     </form>
+   
   </body>
 </html>
