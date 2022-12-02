@@ -25,6 +25,7 @@ $dateFutureVisit = NULL;
 $prisonerID = $_POST['prisoner_id'];
 $visitorID = $_POST['visitor_id'];
 $requestedDate = $_POST['visit_date'];
+echo gettype($requestedDate);
 
 $lookupPastVisit = "SELECT visit_date FROM visits WHERE prisoner_id = $prisonerID AND visited = 1 ORDER BY visit_date DESC LIMIT 1";
 
