@@ -2,20 +2,11 @@
 <?php
 
 
-function visitDayLimit($securityLevel)
-{
+function visitDayLimit($securityLevel) {
     //assuming 30 day month
-    if ($securityLevel == 'low') {
-        return 7;
-
-    } elseif ($securityLevel == 'medium') {
-        return 30;
-
-    } else {
-        return 180;
-
-    }
-
+    if ($securityLevel == 'low') return 7;
+    elseif ($securityLevel == 'medium') return 30;
+    else return 180;
 }
 
 
@@ -274,7 +265,6 @@ function testfunction($conn, $prisonerID, $visitorID, $requestedDate) {
     $lookupSecurity = "SELECT security_level FROM prisoner WHERE prisoner_id = $prisonerID ";
     $securityLevel = $conn->query($lookupSecurity);
     $securityLevel = $securityLevel->fetch_assoc();
-    // echo "Security level: " . $securityLevel . "<br />";
     $securityDateRangeDays = visitDayLimit($securityLevel["security_level"]);
 
 
@@ -287,15 +277,14 @@ function testfunction($conn, $prisonerID, $visitorID, $requestedDate) {
     } 
         
     $requestedDateCopy = $requestedDate;
-
-
     $requestedDate = date_create($requestedDate);
+
     $insertQuery = "INSERT INTO visits (visit_date, visited, visitor_id, prisoner_id) VALUES ('$requestedDateCopy' , 0, $visitorID, $prisonerID)";
 
     if ($datePastVisit && $dateFutureVisit) {
-
         $pastDateDiff = date_diff($datePastVisit, $requestedDate);
         $futureDateDiff = date_diff($requestedDate, $dateFutureVisit);
+        
         if ($pastDateDiff->days >= $securityDateRangeDays && $futureDateDiff->days >= $securityDateRangeDays) {
             $insertResult = $conn->query($insertQuery);
             return true;
@@ -318,9 +307,10 @@ function testfunction($conn, $prisonerID, $visitorID, $requestedDate) {
         } 
         else return false;
         
-    } 
-    else echo "else triggered - unexpected error";
-
+    }
+    else {
+        $insertResult = $conn->query($insertQuery);
+    }
 }
 
 ?>
