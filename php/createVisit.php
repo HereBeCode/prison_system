@@ -13,6 +13,7 @@ $dateFutureVisit = NULL;
 $prisonerID = $_POST['prisoner_id'];
 $visitorID = $_POST['visitor_id'];
 $requestedDate = $_POST['visit_date'];
+echo $requestedDate;
 
 $lookupPastVisit = "SELECT visit_date FROM visits WHERE prisoner_id = $prisonerID AND visited = 1 ORDER BY visit_date DESC LIMIT 1";
 $pastVisitResult = $conn->query($lookupPastVisit);
@@ -39,7 +40,7 @@ if ($futureVisitResult->num_rows != 0) {
 $requestedDateCopy = $requestedDate;
 $requestedDate = date_create($requestedDate);
 
-$insertQuery = "INSERT INTO visits (visit_date, visited, visitor_id, prisoner_id) VALUES ($requestedDateCopy , 0, $visitorID, $prisonerID)";
+$insertQuery = "INSERT INTO visits (visit_date, visited, visitor_id, prisoner_id) VALUES ('$requestedDateCopy' , 0, $visitorID, $prisonerID)";
 
 if ($datePastVisit && $dateFutureVisit) {
     $pastDateDiff = date_diff($datePastVisit, $requestedDate);
@@ -78,5 +79,15 @@ else {
     else echo "Error inserting visit into database.";
 }
 
+if($insertResult){
+    $echoQuery = "SELECT visit_id FROM visits WHERE prisoner_id = $prisonerID AND visit_date = '$requestedDateCopy'";
+    $echoResult = $conn->query($echoQuery);
+
+    $echoResult = $echoResult->fetch_assoc();
+    $echoString = $echoResult["visit_id"];
+
+    echo "<br/>Confirmation number for this visit is: " . $echoString."<br/>";
+    
+}
 
 ?>
