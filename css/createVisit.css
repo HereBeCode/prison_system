@@ -25,12 +25,44 @@ body {
 
 }
 
+.content {
+    position: absolute;
+    height: 100%;
+    width: calc(100% - 240px);
+    left: 240px;
+    padding: 20px;
+}
+
+.content h1 {
+    padding: 24px;
+    text-transform: uppercase;
+}
+
+.field {
+    width: 300px;
+    border: 2px solid rgba(0,0,0,0);
+    outline: none;
+    background-color: rgba (230, 230, 230, 0.6);
+    padding: 0.5rem 1rem;
+    font-size: 1.1 rem;
+    margin-bottom: 22px;
+    transition: .3s;
+}
+
+.field:hover {
+    background-color: rgba(0,0,0,0.1);
+}
+
+
+
 .sidebar .logo_content .logo {
     color: #fff;
     display: flex;
     height: 50px;
     width: 100%;
     align-items: center;
+    opacity: 0;
+    pointer-events: none;
 }
 
 .logo_content .logo .logo_name {
