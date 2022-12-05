@@ -39,7 +39,7 @@ if ($futureVisitResult->num_rows != 0) {
 $requestedDateCopy = $requestedDate;
 $requestedDate = date_create($requestedDate);
 
-$insertQuery = "INSERT INTO visits (visit_date, visited, visitor_id, prisoner_id) VALUES ($requestedDateCopy , 0, $visitorID, $prisonerID)";
+$insertQuery = "INSERT INTO visits (visit_date, visited, visitor_id, prisoner_id) VALUES ('$requestedDateCopy' , 0, $visitorID, $prisonerID)";
 
 if ($datePastVisit && $dateFutureVisit) {
     $pastDateDiff = date_diff($datePastVisit, $requestedDate);
