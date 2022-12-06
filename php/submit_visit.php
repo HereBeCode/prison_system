@@ -6,7 +6,14 @@
     if(!($num_selected_protocols == 6)) die("All protocols not met.");
 
     $conf_number = $_POST['confirmationNumber'];
+$curr_date = date("Y-m-d");
+$query = "SELECT visit_date FROM visits WHERE visit_id = $conf_number";
+$result = $conn->query($query);
 
+if (!$result)
+    echo "error";
+else
+    echo "$curr_date $result";
     
 
     // Add logic for checking if visit date == current date ---> if not current date decline visit 
@@ -14,11 +21,11 @@
     // Any other stuff to check?
     // Likely requires a SELECT query to grab the row with the visit_id == confirmationNumber, check for the logic above and reject the visit (i.e. do not execute the next two lines of code)
 
-    if(!$conf_number==1) echo "Error";
-    $query = "UPDATE visits SET visited = 1 WHERE visit_id = $conf_number";
-    $result = $conn->query($query);
+    // if(!$conf_number==1) echo "Error";
+    // $query = "UPDATE visits SET visited = 1 WHERE visit_id = $conf_number";
+    // $result = $conn->query($query);
    
-    $message = "";
-    if (!$result) echo "Error in updating visit: $conf_number ";
-    else echo "Visit: $conf_number completed successfully.";
+    // $message = "";
+    // if (!$result) echo "Error in updating visit: $conf_number ";
+    // else echo "Visit: $conf_number completed successfully.";
 ?>

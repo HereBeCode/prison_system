@@ -4,87 +4,71 @@
     <meta charset="UTF-8">
     <meta http-equiz="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="css/createVisit.css">
-    <link rel="stylesheet" href="js/createVisit.js">
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="css/style.css">
     <title> Create Visit Form </title>
 </head>
 <body>
-    <div class="sidebar">
-        <div class="logo_content">
-            <div class="logo">
-                <div class="logo_name">ShawShank Prison</div>
-            </div>
-            <i class='bx bx-menu' id="btn"></i>
-        </div>
-        <ul class="nav_list">
+    <nav>
+        <ul>
             <li>
-                <a href="#">
-                    <i class='bx bx-grid-alt'></i>
-                    <span class="links_name">Dashboard</span>
+                <a href="index.html" class="logo">
+                    <img src="img/prison-logo.png" alt="">
+                    <span class="nav_item">ShawShank</span>
                 </a>
-                <span class="tooltip">Dashboard</span>
             </li>
             <li>
-                <a href="#">
-                    <i class='bx bx-grid-alt'></i>
-                    <span class="links_name">Register A Visitor</span>
+                <a href="index.html">
+                    <i class="fas fa-list"></i>
+                    <span class="nav_item">Main Menu</span>
                 </a>
-                <span class="tooltip">Register A Visitor</span>
             </li>
             <li>
-                <a href="#">
-                    <i class='bx bx-grid-alt'></i>
-                    <span class="links_name">Schedule A Visit</span>
+                <a href="register_visitor.html">
+                    <i class='fas fa-user'></i>
+                    <span class="nav_item">Register A Visitor</span>
                 </a>
-                <span class="tooltip">Schedule A Visit</span>
             </li>
             <li>
-                <a href="#">
-                    <i class='bx bx-grid-alt'></i>
-                    <span class="links_name">Visit Check-In</span>
+                <a href="create_visit.html">
+                    <i class="fas fa-calendar-days"></i>
+                    <span class="nav_item">Schedule A Visit</span>
                 </a>
-                <span class="tooltip">Visit Check-In</span>
             </li>
             <li>
-                <a href="#">
-                    <i class='bx bx-grid-alt'></i>
-                    <span class="links_name">Visit Policy</span>
+                <a href="visit_checkin.html">
+                    <i class="fas fa-pen-nib"></i>
+                    <span class="nav_item">Visit Check-In</span>
                 </a>
-                <span class="tooltip">Visit Policy</span>
             </li>
             <li>
-                <a href="#">
-                    <i class='bx bx-grid-alt'></i>
-                    <span class="links_name">Retrieve Prisoners</span>
+                <a href="visitor_policy.html">
+                    <i class="fas fa-clipboard"></i>
+                    <span class="nav_item">Visit Policy</span>
                 </a>
-                <span class="tooltip">Retrieve Prisoners</span>
+            </li>
+            <li>
+                <a href="php/retrieve_prisoners.php">
+                    <i class="fas fa-folder-open"></i>
+                    <span class="nav_item">Retrieve Prisoners</span>
+                </a>
             </li>
         </ul>
-    </div>
+    </nav>
 <div class="content">
     <h1> Create Visit Form </h1>
         <form action="./php/createVisit.php" method="post">
-
-                <label >Prisoner ID</label>
+                <label>Prisoner ID</label> </br>
                 <input type="number" name="prisoner_id" class="field"/></br></br>
-                <label >Visitor ID</label></td>
+                <label>Visitor ID</label></td> </br>
                 <input type="number" name="visitor_id" class="field"/></br></br>
-                <label >Date of Visit</label>
+                <label>Date of Visit</label> </br>
                 <input type="date" name="visit_date" class="field"/></br></br>
                 
                 <input type="submit" value="Submit" class="btn"/>
                 <input type="reset" value="Reset" class="btn"/>
+            
         </form>      
     </div>
-<script>
-    let btn = document.querySelector("#btn");
-    let sidebar = document.querySelector("sidebar");
-    btn.onclick = function() {
-        sidebar.classList.toggle("active");
-        
-    }
-
-</script>
 </body>
 </html>
