@@ -4,10 +4,58 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="css/style.css">
     <title>Visitation Form</title>
 </head>
 <body>
-    <center>
+    <nav>
+        <ul>
+            <li>
+                <a href="index.html" class="logo">
+                    <img src="img/prison-logo.png" alt="">
+                    <span class="nav_item">ShawShank</span>
+                </a>
+            </li>
+            <li>
+                <a href="index.html">
+                    <i class="fas fa-list"></i>
+                    <span class="nav_item">Main Menu</span>
+                </a>
+            </li>
+            <li>
+                <a href="register_visitor.html">
+                    <i class='fas fa-user'></i>
+                    <span class="nav_item">Register A Visitor</span>
+                </a>
+            </li>
+            <li>
+                <a href="create_visit.html">
+                    <i class="fas fa-calendar-days"></i>
+                    <span class="nav_item">Schedule A Visit</span>
+                </a>
+            </li>
+            <li>
+                <a href="visit_checkin.html">
+                    <i class="fas fa-pen-nib"></i>
+                    <span class="nav_item">Visit Check-In</span>
+                </a>
+            </li>
+            <li>
+                <a href="visitor_policy.html">
+                    <i class="fas fa-clipboard"></i>
+                    <span class="nav_item">Visit Policy</span>
+                </a>
+            </li>
+            <li>
+                <a href="php/retrieve_prisoners.php">
+                    <i class="fas fa-folder-open"></i>
+                    <span class="nav_item">Retrieve Prisoners</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <div class="content">
     <h1>Visitation Form</h1>
     <form action="./php/submit_visit.php" method="post">
 
@@ -27,21 +75,16 @@
         <label for="protocol5">Prisoner has presented verified name of visitor.</label></br></br>
 
         <input type="checkbox" name="protocol[]" required>
-        <label for="protocol6">Prisoner was provided with 1 pen and 1 booklet.</label>
+        <label for="protocol6">Prisoner was provided with 1 pen and 1 booklet.</label></br></br>
+        
+        <label >Visit Confirmation Number</label>
+        <input type="number" name="confirmationNumber"/></br></br>
 
-        <table>
-            <tr>
-                <td><label >Visit Confirmation Number</label></td>
-                <td><input type="number" name="confirmationNumber" align=right /></td>
-            </tr>
-             
-        </table>
-
-        <input type="submit" value="Submit"/>
-        <input type="reset" value="Reset" />
+        <input type="submit" value="Submit" class="btn"/>
+        <input type="reset" value="Reset" class="btn"/>
 
     </form>
-    </center>
+    </div>
     
 </body>
 </html>

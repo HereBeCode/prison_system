@@ -1,0 +1,134 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+body {
+    background: #dfe9f5;
+}
+
+nav {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    left: 0;
+    background: #fff;
+    width: 90px;
+    overflow: hidden;
+    transition: width 0.2s linear;
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    text-align: center;
+    display: flex;
+    transition: all 0.5s ease;
+    margin: 10px 0 0 15px;
+}
+
+.logo img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.logo span {
+    font-weight: bold;
+    padding: 15px;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+a {
+    position: relative;
+    color: rgb(85, 83, 83);
+    font-size: 17px;
+    display: table;
+    width: 300px;
+    padding: 10px;
+    
+}
+
+.fas {
+    position: relative;
+    width: 80px;
+    height: 40px;
+    top: 14px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.nav-item {
+    position: relative;
+    top: 12px;
+    margin-left: 10px;
+    text-align: left;
+}
+
+a:hover {
+    background: #eee;
+}
+
+nav:hover {
+    width: 250px;
+    transition: all 0.5 ease;
+}
+
+.content {
+    position: absolute;
+    height: 100%;
+    width: calc(100% - 240px);
+    left: 240px;
+    padding: 20px;
+}
+
+.content h1 {
+    padding: 20px;
+    text-transform: uppercase;
+}
+
+form {
+    margin-left: 20px;
+}
+label {
+    text-transform: uppercase;
+    padding: 10px;
+}
+
+
+.field {
+    width: 30%;
+    border: 2px solid rgba(0,0,0,0);
+    outline: none;
+    background-color: rgba(0,0,0,0.1);
+    padding: 0.5rem 1rem;
+    font-size: 1.1 rem;
+    transition: .3s;
+}
+
+.field:hover {
+    background-color: rgba(0,0,0,0.1);
+}
+
+.btn {
+    width: 100px;
+    padding: 0.5rem 1rem;
+    font-size: 1.1rem;
+    border: none;
+    outline: none;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    transition: .3s;
+    border-radius: 50px;
+    margin-top: 20px;
+}
+
+p {
+    padding-left: 20px;
+}
