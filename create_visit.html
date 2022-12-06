@@ -19,14 +19,14 @@
         </div>
         <ul class="nav_list">
             <li>
-                <a href="#">
+                <a href="index.html">
                     <i class='bx bx-grid-alt'></i>
-                    <span class="links_name">Dashboard</span>
+                    <span class="links_name">Main Menu</span>
                 </a>
-                <span class="tooltip">Dashboard</span>
+                <span class="tooltip">Main Menu</span>
             </li>
             <li>
-                <a href="#">
+                <a href="register_visitor.html">
                     <i class='bx bx-grid-alt'></i>
                     <span class="links_name">Register A Visitor</span>
                 </a>
@@ -35,26 +35,26 @@
             <li>
                 <a href="#">
                     <i class='bx bx-grid-alt'></i>
-                    <span class="links_name">Schedule A Visit</span>
+                    <span class="create_visit.html">Schedule A Visit</span>
                 </a>
                 <span class="tooltip">Schedule A Visit</span>
             </li>
             <li>
-                <a href="#">
+                <a href="visit_checkin.html">
                     <i class='bx bx-grid-alt'></i>
                     <span class="links_name">Visit Check-In</span>
                 </a>
                 <span class="tooltip">Visit Check-In</span>
             </li>
             <li>
-                <a href="#">
+                <a href="visitor_policy.html">
                     <i class='bx bx-grid-alt'></i>
                     <span class="links_name">Visit Policy</span>
                 </a>
                 <span class="tooltip">Visit Policy</span>
             </li>
             <li>
-                <a href="#">
+                <a href="register_visitor.html">
                     <i class='bx bx-grid-alt'></i>
                     <span class="links_name">Retrieve Prisoners</span>
                 </a>
@@ -65,21 +65,21 @@
 <div class="content">
     <h1> Create Visit Form </h1>
         <form action="./php/createVisit.php" method="post">
-
-                <label >Prisoner ID</label>
+                <label>Prisoner ID</label>
                 <input type="number" name="prisoner_id" class="field"/></br></br>
-                <label >Visitor ID</label></td>
+                <label>Visitor ID</label></td>
                 <input type="number" name="visitor_id" class="field"/></br></br>
-                <label >Date of Visit</label>
+                <label>Date of Visit</label>
                 <input type="date" name="visit_date" class="field"/></br></br>
                 
                 <input type="submit" value="Submit" class="btn"/>
                 <input type="reset" value="Reset" class="btn"/>
+            
         </form>      
     </div>
 <script>
     let btn = document.querySelector("#btn");
-    let sidebar = document.querySelector("sidebar");
+    let sidebar = document.querySelector(".sidebar");
     btn.onclick = function() {
         sidebar.classList.toggle("active");
         

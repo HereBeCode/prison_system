@@ -20,11 +20,6 @@ body {
     padding: 6px 14px;
 }
 
-.sidebar .active {
-    width: 240px;
-
-}
-
 .content {
     position: absolute;
     height: 100%;
@@ -38,14 +33,20 @@ body {
     text-transform: uppercase;
 }
 
+form {
+    margin-left: 24px;
+}
+label {
+    text-transform: uppercase;
+}
+
 .field {
-    width: 300px;
+    width: 20%;
     border: 2px solid rgba(0,0,0,0);
     outline: none;
-    background-color: rgba (230, 230, 230, 0.6);
+    background-color: rgba(0,0,0,0.1);
     padding: 0.5rem 1rem;
     font-size: 1.1 rem;
-    margin-bottom: 22px;
     transition: .3s;
 }
 
@@ -53,6 +54,19 @@ body {
     background-color: rgba(0,0,0,0.1);
 }
 
+.btn {
+    width: 100px;
+    padding: 0.5rem 1rem;
+    font-size: 1.1rem;
+    border: none;
+    outline: none;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    transition: .3s;
+    border-radius: 50px;
+    margin-top: 20px;
+}
 
 
 .sidebar .logo_content .logo {
