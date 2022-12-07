@@ -1,31 +1,91 @@
-<?php include 'database.php'; ?>
-<?php 
-    $selected_protocols = $_POST['protocol'];
-    $num_selected_protocols = count($selected_protocols);
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+    <meta charset="UTF-8">
+    <meta http-equiz="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../css/style.css">
+    <title> Create Visit Form </title>
 
-    if(!($num_selected_protocols == 6)) die("All protocols not met.");
 
-    $conf_number = $_POST['confirmationNumber'];
-$curr_date = date("Y-m-d");
-$query = "SELECT visit_date FROM visits WHERE visit_id = $conf_number";
-$result = $conn->query($query);
+    <?php include 'database.php'; ?>
 
-if (!$result)
-    echo "error";
-else
-    echo "$curr_date $result";
-    
+</head>
+<body>
+    <nav>
+        <ul>
+            <li>
+                <a href="../index.html" class="logo">
+                    <img src="img/prison-logo.png" alt="">
+                    <span class="nav_item">ShawShank</span>
+                </a>
+            </li>
+            <li>
+                <a href="../index.html">
+                    <i class="fas fa-list"></i>
+                    <span class="nav_item">Main Menu</span>
+                </a>
+            </li>
+            <li>
+                <a href="../register_visitor.html">
+                    <i class='fas fa-user'></i>
+                    <span class="nav_item">Register A Visitor</span>
+                </a>
+            </li>
+            <li>
+                <a href="../create_visit.html">
+                    <i class="fas fa-calendar-days"></i>
+                    <span class="nav_item">Schedule A Visit</span>
+                </a>
+            </li>
+            <li>
+                <a href="../visit_checkin.html">
+                    <i class="fas fa-pen-nib"></i>
+                    <span class="nav_item">Visit Check-In</span>
+                </a>
+            </li>
+            <li>
+                <a href="../visitor_policy.html">
+                    <i class="fas fa-clipboard"></i>
+                    <span class="nav_item">Visit Policy</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <div class="content">
+        <?php 
+            $selected_protocols = $_POST['protocol'];
+            $num_selected_protocols = count($selected_protocols);
 
-    // Add logic for checking if visit date == current date ---> if not current date decline visit 
-    // Add logic for checking if patient has already been visited ---> if visited == 1, refuse visit.
-    // Any other stuff to check?
-    // Likely requires a SELECT query to grab the row with the visit_id == confirmationNumber, check for the logic above and reject the visit (i.e. do not execute the next two lines of code)
+            if(!($num_selected_protocols == 6)) die("All protocols not met. Visit not allowed.");
 
-    // if(!$conf_number==1) echo "Error";
-    // $query = "UPDATE visits SET visited = 1 WHERE visit_id = $conf_number";
-    // $result = $conn->query($query);
-   
-    // $message = "";
-    // if (!$result) echo "Error in updating visit: $conf_number ";
-    // else echo "Visit: $conf_number completed successfully.";
-?>
+            date_default_timezone_set('EST');
+            $current_date = date("Y-m-d");
+            $conf_number = $_POST['confirmationNumber'];
+
+            $query = "SELECT * FROM visits WHERE visit_id = $conf_number";
+            $result = $conn->query($query);
+
+            if ($result->num_rows == 0) die("Cannot proceed with visit. No visit found for confirmation number: " . $conf_number);
+        
+            $result = $result->fetch_assoc();
+
+            if ($result['visit_date'] == $current_date && $result['visited'] == 0) {
+                $query = "UPDATE visits SET visited = 1 WHERE visit_id = $conf_number"; 
+                $result = $conn->query($query);
+                if (!$result) echo "Failed to update visited status for confirmation number: " . $conf_number . "<br />";
+
+                echo "Visit check-in complete. Proceed with visit for confirmation number: " . $conf_number . "<br />";
+                
+            }
+            else echo "Cannot complete visit. Incorrect date or visit already completed.<br />";
+
+        
+            $conn->close();
+
+        ?>      
+    </div>
+</body>
+</html>
+

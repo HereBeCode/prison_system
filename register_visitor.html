@@ -48,12 +48,6 @@
                   <span class="nav_item">Visit Policy</span>
               </a>
           </li>
-          <li>
-              <a href="php/retrieve_prisoners.php">
-                  <i class="fas fa-folder-open"></i>
-                  <span class="nav_item">Retrieve Prisoners</span>
-              </a>
-          </li>
       </ul>
   </nav>
 <div class="content">
@@ -63,9 +57,9 @@
     
     <form name="registerForm" action="./php/register_visitor.php" method="post">
       <label>First Name</label> </br>
-      <input type="text" name="firstName" class="field"></br></br>
+      <input type="text" name="firstName" class="field" onblur="validateForm()"></br></br>
       <label>Last Name</label> </br>
-      <input type="text" name="lastName" class="field"></br></br>
+      <input type="text" name="lastName" class="field" onblur="validateForm()"></br></br>
 
       <input type="submit" value="Submit" onclick="return validateForm()" class="btn" />
       <input type="reset" value="Reset" class="btn"/>

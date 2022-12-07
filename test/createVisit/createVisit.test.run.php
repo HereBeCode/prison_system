@@ -313,4 +313,7 @@ function testfunction($conn, $prisonerID, $visitorID, $requestedDate) {
     }
 }
 
+
+$conn->close();
+
 ?>

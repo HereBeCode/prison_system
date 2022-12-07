@@ -17,4 +17,7 @@
     (28, '2025-01-01', 0, 2, 37)";
     $repopulate_result = $conn->query($repopulate);
     if($repopulate_result) echo "Successfully repopulated table";
+
+    $conn->close();
+
 ?>
