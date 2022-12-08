@@ -68,6 +68,14 @@
             $visitorID = $_POST['visitor_id'];
             $requestedDate = $_POST['visit_date'];
             $insertResult = false;
+            
+            $validPrisoner = "SELECT * FROM prisoner WHERE prisoner_id = $prisonerID";
+            $result = $conn->query($validPrisoner);
+            if($result->num_rows== 0) die("Invalid prisoner ID (prisoner with that ID " . $prisonerID . " does not exist in records).<br />");
+
+            $validVisitor = "SELECT * FROM visitor WHERE visitor_id = $visitorID";
+            $result = $conn->query($validVisitor);
+            if($result->num_rows== 0) die("Invalid prisoner ID (prisoner with that ID " . $visitorID . " does not exist in records).<br />");
 
             $lookupPastVisit = "SELECT visit_date FROM visits WHERE prisoner_id = $prisonerID ORDER BY visit_date DESC LIMIT 1";
             $pastVisitResult = $conn->query($lookupPastVisit);
