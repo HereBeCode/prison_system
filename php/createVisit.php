@@ -67,9 +67,9 @@
             $prisonerID = $_POST['prisoner_id'];
             $visitorID = $_POST['visitor_id'];
             $requestedDate = $_POST['visit_date'];
-            echo $requestedDate;
+            $insertResult = false;
 
-            $lookupPastVisit = "SELECT visit_date FROM visits WHERE prisoner_id = $prisonerID AND visited = 1 ORDER BY visit_date DESC LIMIT 1";
+            $lookupPastVisit = "SELECT visit_date FROM visits WHERE prisoner_id = $prisonerID ORDER BY visit_date DESC LIMIT 1";
             $pastVisitResult = $conn->query($lookupPastVisit);
 
             if ($pastVisitResult->num_rows != 0) {
